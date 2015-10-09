@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="pt-BR">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Quantum Firefox Club, Javascript Básico!</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/firefoxos.css" id="theme">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style>
+		
+			.partes .box {
+				background:rgba(0,0,0,0.4);
+				box-shadow:0 0 3px rgba(0,0,0,0.6);
+				padding:10px;
+			}
+			.partes .box:not(:last-of-type) { 
+				margin-bottom:10px; 
+			}
+			.partes .box h2 {
+				font-size:1.6em;
+			}
+			
+		</style>
+
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Quantum Firefox Club</h1>
+					<h2>JS 101</h2>
+					<h3>uma introdução ao JavaScript</h3>
+					<img src="img/quantum.png">
+					<p>
+						<small>Comunidade Mozilla Brasil - <a href="http://mozillabrasil.org.br/">mozillabrasil.org.br</a></small>
+					</p>
+				</section>
+				
+				<section data-background="css/theme/img/bg-firefoxos.jpg">
+					
+					<h1>A Mozilla é...</h1>
+					<blockquote>uma comunidade global de pessoas que acreditam que abertura, inovação, e oportunidade são fatores fundamentais para o bem estar da Internet.</blockquote>
+					
+					<aside class="notes">
+						- Somos programadores, advogados, cientistas, designers, estudantes...</br>
+						- Somos pessoas comuns que lutam para garantir a sua liberdade e direito de expressão.
+					</aside>
+					
+				</section>
+
+				<section>
+					
+					<h3>Ferramentas de</h3>
+					<h1>desenvolvimento</h1>
+					<h2>Firefox Developer Edition</h2>
+					<img src="img/devtools.png">
+					
+				</section>
+
+				<section>
+					
+					<h3>Ferramentas de</h3>
+					<h1>desenvolvimento</h1>
+					<img src="img/Mozilla-Thimble.png">
+					<a href="https://thimble.mozilla.org/"><h6>https://thimble.mozilla.org/</h6></a>
+				</section>
+				
+				<section>
+					
+					<img src="img/js-html-css.png">
+					<h1>Desenvolvimento Web</h1>
+
+				</section>
+				
+				<section>
+					<h1>Introdução ao </h1>
+					<img src="img/html.png">
+				</section>
+				
+				<section>
+					<h1>O HTML É...</h1>
+					<blockquote>uma linguagem de marcação com uma sintaxe específica que fornece instruções ao navegador sobre como exibir uma página. O HTML distingue e separa o "conteúdo" (palavras, imagens, áudio, vídeo, ...).</blockquote>
+				</section>
+
+				<section>
+					
+					<h1>TAGS</h1>
+					<h3>São as estrutras que usaremos para criar as marcações e dar as instruções de como o navegador deve renderizar a página.</h3>
+					<br>
+					<h3>Quase todas as TAGs devem ser abertas com <b style="color: #E0195D">< tag></b> e fechadas com <b style="color: #E0195D">< /tag></b>, constituindo um elemento. </h3>
+					<br>
+					<h2>Exemplo:</h2>
+					<pre><code data-trim contenteditable>
+						<p> Parágrafo 1 </p>					
+					</code></pre>			
+
+				</section>
+
+				<section>
+					
+					<h1>TAGS</h1>
+					<h3>Também possível definir atributos para as tags. Existem atributos nativos do HTML, porém podemos criar os novos usando o prefixo <b style="color: #E0195D">data-</b></h3>
+					<br>
+					<h2>Exemplo:</h2>
+					<pre><code data-trim contenteditable>
+						<p id="p1" data-group="grupo1"> Parágrafo 1 </p>					
+					</code></pre>			
+
+				</section>
+
+				<section>
+					
+					<h2>Outras TAGs: </h2>
+					<br>
+					<h3><b style="color: #E0195D">< h1></b> ... <b style="color: #E0195D">< h6></b> - Define um cabeçalho</h3>
+					<h3><b style="color: #E0195D">< strong></b> - Define um texto importante</h3>
+					<h3><b style="color: #E0195D">< div></b> ou <b style="color: #E0195D">< span></b> - Define uma área de conteúdo</h3>
+					<h3><b style="color: #E0195D">< a></b> - <a href="http://www.w3schools.com/tags/tag_a.asp">Cria um link</a></h3>
+					<h3><b style="color: #E0195D">< img></b> - <a href="http://www.w3schools.com/tags/tag_img.asp">Insere uma imagem</a></h3>
+					<h3><b style="color: #E0195D">< input></b> - <a href="http://www.w3schools.com/tags/tag_input.asp">Define um campo de entrada de dados</a></h3>
+					<h3><b style="color: #E0195D">< button></b> - <a href="http://www.w3schools.com/tags/tag_button.asp">Cria um botão</a></h3>
+
+				</section>
+
+				<section>
+					
+					<h2>Alguns Atributos: </h2>
+					<br>
+					<h3><b style="color: #00CCFF">href</b> ou <b style="color: #00CCFF">src</b> - Especifica a URL</h3>
+					<h3><b style="color: #00CCFF">name</b> - Especifica o nome de um elemento</h3>
+					<h3><b style="color: #00CCFF">value</b> - Especifica o valor de um elemento</h3>
+					<h3><b style="color: #00CCFF">type</b> - Especifica o tipo de um elemento</h3>
+					<h3><b style="color: #00CCFF">id</b> - Define um índice único para um elemento</h3>
+					<h3><b style="color: #00CCFF">class</b> - Define uma classe para um grupo de elementos</h3>
+					<h3><b style="color: #00CCFF">alt</b> - Define um texto alternativo</h3>
+
+				</section>
+
+				<section>
+					<h1>O que é DOM?</h1>
+					<blockquote>O Document Object Model é uma multi-plataforma que representa como as marcações em HTML, XHTML e XML são organizadas e lidas pelo navegador. Uma vez indexadas, estas marcações se transformam em elementos de uma árvore que você pode manipular via API.</blockquote>
+				</section>
+
+				<section>
+					<h1>Entendendo o DOM </h1>
+					<img src="img/dom.png">
+				</section>
+
+				<section>
+					<img src="img/dom-explicado.png" style="border: 2px solid #555">
+				</section>
+
+				<section>
+					<h1>Introdução ao </h1>
+					<img src="img/css3.png">
+				</section>
+
+				<section>
+					<h1>O CSS É...</h1>
+					<blockquote> uma linguagem para especificar como os documentos são apresentados aos usuários (Estilo do documento).</blockquote>
+				</section>
+
+				<section>
+					
+					<h1>Seletores</h1>
+					<br>
+					<h3>São usados para selecionar e aplicar estilos aos elementos do HTML.</h3>
+					<br>
+					<h2>Sintaxe:</h2>
+					<pre><code data-trim contenteditable>
+						seletor { propriedade: valor(es); }					
+					</code></pre>			
+
+				</section>
+
+				<section>
+					
+					<h2>Tipos de seletores</h2>
+					<br>
+					<h3>Universal:</h3>
+					<pre><code data-trim contenteditable>
+						* { color: red; }					
+					</code></pre>
+					<h3>Pela TAG HTML:</h3>
+					<pre><code data-trim contenteditable>
+						div { width: 100% }					
+					</code></pre>
+					<h3>Por ID:</h3>
+					<pre><code data-trim contenteditable>
+						#img1 { border: 2px solid #DDD }					
+					</code></pre>
+					<h3>Pela Classe:</h3>
+					<pre><code data-trim contenteditable>
+						.grupo1 { font-size: 20px }					
+					</code></pre>
+
+				</section>
+
+				<section>
+					
+					<h2>Seletores Combinados</h2>
+					<br>
+					<h3>Todo elemento P dentro de um elemento com ID texto</h3>
+					<pre><code data-trim contenteditable>
+						#texto p { color: #000; }					
+					</code></pre>
+					<h3>Toda DIV com classe post</h3>
+					<pre><code data-trim contenteditable>
+						div.post { margin: 10px; }					
+					</code></pre>
+					<h3>Todo elemento com classe post dentro de uma DIV</h3>
+					<pre><code data-trim contenteditable>
+						div .post { text-align: left; }					
+					</code></pre>
+					<h3>Todo elemento A dentro de um elemeto com classe post e ID conteudo dentro de uma DIV</h3>
+					<pre><code data-trim contenteditable>
+						div #conteudo.post a { text-decoration: none; }					
+					</code></pre>
+
+				</section>
+
+				<section>
+					
+					<h2>Seletores Filho</h2>
+					<br>
+					<h3>As propriedades aplicam se aos filhos imediatos.</h3>
+					<pre><code data-trim contenteditable>
+						.post > p { color: blue; }					
+					</code></pre>
+					<h3>Qual com que cor fica cada parágrafo?</h3>
+					<h4>CSS: </h4>
+					<pre><code data-trim contenteditable>
+						.post p { color: red }
+						.post > p { color: blue; }
+					</code></pre>
+					<h4>HTML: </h4>
+					<pre><code data-trim contenteditable>
+					    <div class='post'>
+						<p>Parágrafo 1</p>
+						<span>
+						    <p>Parágrafo 2</p>
+						</span>
+						</div>
+					</code></pre>
+				</section>
+
+				<section>
+					
+					<h2>Seletores Sucessores</h2>
+					<br>
+					<h3>As propriedades se aplicam ao sucessor imediato.</h3>
+					<pre><code data-trim contenteditable>
+						.post > p { color: blue; }					
+					</code></pre>
+					<h3>A cor azul será aplicada ao elemento P que imediatamente sucede um elemento com classe post</h3>
+					<pre><code data-trim contenteditable>
+					<div class='post'>
+						<p>Parágrafo 1</p>
+						</div>
+						<p>Parágrafo 2</p>
+					</code></pre>
+				</section>
+				
+				<section>
+					
+					<h2>Agrupamento de Seletores</h2>
+					<br>
+					<h3>Permite que uma mesma propriedade seja aplicada a vários seletores.</h3>
+					<pre><code data-trim contenteditable>
+						.post > p, .post p{ color: gray; }					
+					</code></pre>
+					<h3>Ambos os parágrafos serão cinza</h3>
+					<pre><code data-trim contenteditable>
+					<div class='post'>
+						<p>Parágrafo 1</p>
+						</div>
+						<p>Parágrafo 2</p>
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Introdução ao </h1>
+					<img src="img/js.png">
+				</section>
+
+				<section>
+					<h1>Onde? </h1>
+					<ul>
+						<li>Navegadores</li>
+						<li>Servidores (Node.js)</li>
+						<li>Bancos de Dados NoSQL (MongoDb e CouchDB)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Entrada e saída de dados básica </h2>
+					<br>
+					<h3>Entrada</h3>
+					<pre><code data-trim contenteditable>
+						var nome = prompt("Qual seu nome?");
+						// Atribui a variável nome o valor informado pelo usuário
+					</code></pre>
+					<h3>Saída</h3>
+					<pre><code data-trim contenteditable>
+						alert("Nome: "+nome);
+						// Exibe o conteúdo salvo na variável nome anteriormente na forma alerta
+					</code></pre>
+					<pre><code data-trim contenteditable>
+						console.log("Nome: "+nome);
+						// Exibe o conteúdo salvo na variável nome anteriormente no console do navegador
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Tipos de dados</h2>
+					<img src="img/typedata.png">
+				</section>
+
+				<section>
+					<h2><b style="color: #A5A5A5">null</b></h2>
+					<br>
+					<h3>É um literal que representa um valor nulo.</h3>
+				</section>
+
+				<section>
+					<h2><b style="color: #ED7D31">undefined</b></h2>
+					<br>
+					<h3>Representa um valor indefinido.</h3>
+					<h3>Objetos que não existem são undefined.</h3>
+					<br>
+					<pre><code data-trim contenteditable>
+						var nome;
+						alert(nome);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2><b style="color: #ED7D31">undefined</b></h2>
+					<br>
+					<h3>Representa um valor indefinido.</h3>
+					<h3>Objetos que não existem são undefined.</h3>
+					<br>
+					<pre><code data-trim contenteditable>
+						var nome;
+						alert(nome); //undefined
+						console.log(typeof nome); //undefined
+					</code></pre>
+				</section>
+
+				<section>
+					<h2><b style="color: #FFC000">String</b></h2>
+					<br>
+					<h3>Usada para armazenar uma sequência de caracteres.</h3>
+					<pre><code data-trim contenteditable>
+						var ws = "JS101";
+						alert(typeof nome); //String
+					</code></pre>
+					<h3>Concatenação</h3>
+					<pre><code data-trim contenteditable>
+						var ws = "Workshop: ";
+						ws += "JS101";
+						alert(ws); //Workshop: JS101
+					</code></pre>
+					<h3>Tamanho</h3>
+					<pre><code data-trim contenteditable>
+						var ws = "JS101";
+						alert(ws.length); //5
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #FFC000">String</b></h2>
+					<br>
+					<h3>Acessando uma posição</h3>
+					<pre><code data-trim contenteditable>
+						var ws = "JS101";
+						alert(ws[0]+ws[1]); //JS
+						alert(ws.charAt(0)+ws.charAt(1)); //JS
+					</code></pre>
+					<h3>Comparação</h3>
+					<pre><code data-trim contenteditable>
+						var ws = "JS101";
+						alert(ws[0] > ws[1]); //false
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #4472C4">Number</b></h2>
+					<br>
+					<h3>Armazena um número real.</h3>
+					<pre><code data-trim contenteditable>
+						var n1 = -101;
+						var n2 = Math.PI;
+						var n3 = 2e4;
+						alert(typeof n1); //number
+						alert(typeof n2); //number
+						alert(typeof n3); //number
+						alert(n2); //3.141592653589793
+						alert(n3); //20000
+					</code></pre>
+
+				</section>
+				<section>
+					<h2><b style="color: #4472C4">Number</b></h2>
+					<br>
+					<h2>Operações Aritméticas</h2>
+					<h3><b style="color: #4472C4">+</b> - Adição</h3>
+					<h3><b style="color: #4472C4">-</b> - Subtração</h3>
+					<h3><b style="color: #4472C4">*</b> - Multiplicação</h3>
+					<h3><b style="color: #4472C4">/</b> - Divisão</h3>
+					<h3><b style="color: #4472C4">%</b> - Resto da divisão</h3>
+					<h3><b style="color: #4472C4">++</b> - Incremento</h3>
+					<h3><b style="color: #4472C4">--</b> - Decremento</h3>
+				</section>
+				<section>
+					<h2><b style="color: #4472C4">Number</b></h2>
+					<br>
+					<h3>Qual o resultado da operação abaixo?</h3>
+					<pre><code data-trim contenteditable>
+						var n1 = -101;
+						var n2 = 101;
+						var n3 = n1 + n2;
+						alert("V: "+n3);
+					</code></pre>
+					<br>
+					<h3>O resultado da operação abaixo é o mesmo da anterior?</h3>
+					<pre><code data-trim contenteditable>
+						var n1 = -101;
+						var n2 = 101;
+						alert("V: "+n1+n2);
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #70AD47">Boolean</b></h2>
+					<br>
+					<h3>Armazena um valor true(verdadeiro) ou false(falso).</h3>
+					<pre><code data-trim contenteditable>
+						var t = true;
+						var f = false;
+						alert(typeof t);
+						alert(typeof f);
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #ED7D31">Array</b></h2>
+					<br>
+					<h3>Armazena um conjunto de valores. Um  vetor pode conter vários tipos de dados.</h3>
+					<pre><code data-trim contenteditable>
+						var vetor = ["JS101", 101, true, null];
+						alert(vetor[1]); //101
+					</code></pre>
+					<h3>Tamanho</h3>
+					<pre><code data-trim contenteditable>
+						alert(vetor.lenght); //4
+					</code></pre>
+					<h3>Adicionando Elementos</h3>
+					<pre><code data-trim contenteditable>
+						vetor[6] = Math.PI;
+					</code></pre>
+					<h3>Qual será o novo tamanho do vetor?</h3>
+					<pre><code data-trim contenteditable>
+						alert(vetor.lenght); //?
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #ED7D31">Array</b></h2>
+					<br>
+					<h3>Resposta: 6. As posições no intervalo não especificado serão <b style="color: #ED7D31">undefined</b></h3>
+					<br>
+					<h3>Tipo de um vetor</h3>
+					<pre><code data-trim contenteditable>
+						alert(typeof vetor); //object
+					</code></pre>
+				</section>
+				<section>
+					<h2><b style="color: #ED7D31">Object</b></h2>
+					<br>
+					<h3>O JavaScript é orientado a objetos.</h3>
+					<br>
+					<h3>O que é um objeto?</h3>
+					<blockquote> É uma coleção de propriedades, e uma propriedade é uma associação entre um nome e um valor. O valor de uma propriedade pode ser uma função, que é então considerada um método do objeto. Além dos objetos pré-definidos, você pode criar os seus.</blockquote>
+				</section>
+				<section>
+					<h2><b style="color: #ED7D31">Object</b></h2>
+					<br>
+					<h3>Criando um objeto</h3>
+					<pre><code data-trim contenteditable>
+						var so = new Object();
+						so.distro = "Debian";
+						so.versao = "Jessie";
+						so.nVersao = 8.2;
+					</code></pre>
+					<h3>Outra forma:</h3>
+					<pre><code data-trim contenteditable>
+						var so = new Object();
+						so["distro"] = "Windows";
+						so["versao"] = "Windows 10";
+						so["nVersao"] = 10;
+					</code></pre>
+					<h3>Acessando uma propriedade:</h3>
+					<pre><code data-trim contenteditable>
+						alert(so["distro"]);
+						alert(so.versao");
+					</code></pre>
+				</section>
+				<section>
+					<h2>Alguns objetos pré-definidos</h2>
+					<h3><b style="color: #FFC000">String</b></h3>
+					<pre><code data-trim contenteditable>
+						var ws = new String("JS101");
+						var ws2 = "JS101";
+						alert(typeof ws);
+						alert(typeof ws2);
+						alert(ws.valueOf());
+						alert(ws2);
+					</code></pre>
+					<h3><b style="color: #4472C4">Number</b></h3>
+					<pre><code data-trim contenteditable>
+						var n1 = new Number(101);
+						var n2 = 101;
+						alert(typeof n1);
+						alert(typeof n2);
+						alert(n1.valueOf());
+						alert(n2);
+					</code></pre>
+					<h3><b style="color: #70AD47">Boolean</b></h3>
+					<pre><code data-trim contenteditable>
+						var b1 = new Boolean(true);
+						var b2 = true;
+						alert(typeof b1);
+						alert(typeof b2);
+						alert(b1.valueOf());
+						alert(b2);
+					</code></pre>
+				</section>
+				<section>
+					<h1>Estruturas condicionais</h1>
+				</section>
+				<section>
+					<h2>IF/ELSE</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+						var b = new Boolean(false);
+						if(b){
+						    alert("O objeto b existe!");
+						}else{
+						    alert("O objeto b tem valor falso!");
+						}
+					</code></pre>
+					<pre><code data-trim contenteditable>
+						var s1 = "JS";
+						var s2 = "JS101";
+						if(s1.charAt(0) == s2.charAt(0) && s1[1] == s2[1]){
+						    alert("Os primeiros caracteres de s1 e s2 são iguais!");
+						}else{
+						    alert("Os primeiros caracteres de s1 e s2 são diferentes!");
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h2>SWITCH</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+						var l = "a";
+						switch(l){
+						    case "a":
+						        alert("Respota Correta!");
+						        break;
+						    case "b":
+						        alert("Respota Errada!");
+						        break;
+						    case "c":
+						        alert("Respota Errada!");
+						        break;
+						    case "d":
+						        alert("Respota Errada!");
+						        break;
+						    default: alert("Opção inválida!");
+						}
+					</code></pre>	
+				</section>
+				<section>
+					<h1>Estruturas de</h1>
+					<h1>Repetição</h1>
+				</section>
+				<section>
+					<h2>WHILE</h2>
+					<pre><code data-trim contenteditable>
+						var numero = 1;
+						while(numero <= 10) {
+						    console.log(numero);
+						    numero++;
+						}
+					</code></pre>
+					<h2>DO WHILE</h2>
+					<pre><code data-trim contenteditable>
+						var numero = 1;
+						do {
+						    console.log(numero);
+						    numero++;
+						    if(numero == 10){
+						    	numero = "fim";
+						    }
+						} while(typeof numero == "number");
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>FOR</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+						for(var numero = 1; numero <= 10; numero++) {
+						    console.log(numero);
+						}
+					</code></pre>
+					<pre><code data-trim contenteditable>
+						var numero = 1;
+						for(; numero <= 10; numero++) {
+						    console.log(numero);
+						}
+					</code></pre>
+					<pre><code data-trim contenteditable>
+						for(var numero = 1; ; numero++) {
+						    if(numero > 10) break;
+						    console.log(numero);
+						}
+					</code></pre>
+					<pre><code data-trim contenteditable>
+						var numero = 1
+						for(; ; ) {
+						    if(numero > 10) break;
+						    console.log(numero);
+						    numero++;
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h2>Iterando sobre Arrays</h2>
+					<pre><code data-trim contenteditable>
+						var frutas = ['uva', 'laranja', 'tomate'];
+						frutas.forEach(function(item){
+						    console.log(item); 
+						});
+					</code></pre>
+				</section>
+				<section>
+					<h1>Funções</h1>
+					<br>
+					<blockquote>São um conjunto de instruções utilizadas para executar uma determinada tarefa. Seu principal objetivo é evitar que um trecho de código seja repetido sempre que for preciso efetuar uma operação.</blockquote>
+				</section>
+				<section>
+					<h2>Sintaxe:</h2>
+					<pre><code data-trim contenteditable>
+						function nome( parametros ){
+						    //código
+						}
+					</code></pre>
+					<h2>Com retorno:</h2>
+					<pre><code data-trim contenteditable>
+						function nome( parametros ){
+						    //código
+						    returno algo;
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h3>Calcula o maior de 2 números:</h3>
+					<pre><code data-trim contenteditable>
+						function maior(a, b){
+						    if(a > b){
+						        alert(a);
+						    }else alert(b);
+						}
+						maior(10, 5); //chamada da função
+					</code></pre>
+					<h3>Retorna o maior valor de um Array:</h3>
+					<pre><code data-trim contenteditable>
+						function maior(vetor){
+							    var maior = vetor[0];
+							    for(var i = 0; i < vetor.length; i++){
+							        if(maior < vetor[i]) maior = vetor[i];
+							    }
+							    return maior;
+						}
+						alert("Maior: "+maior([-1,8,101,50])); //101
+						alert("Maior: "+maior([-1,-2,-3,0,null])); //0
+						alert("Maior: "+maior([-1,-2,null,-3,0])); //null
+					</code></pre>
+				</section>
+				<section>
+					<h2>O parametro arguments</h2>
+					<blockquote> No Javascript, toda função, independente dos argumentos especificados em sua assinatura, possui um objeto arguments. Esse objeto contém todos os argumentos passados para a função. </blockquote>
+				</section>
+				<section>
+					<h3>Exemplo função usando o objeto arguments</h3>
+					<br>
+					<pre><code data-trim contenteditable>
+						//Exibe todos os argumentos recebidos
+						function geral(){
+						    var i = 0;
+						    while(i < arguments.length){
+						    	console.log(arguments[i]);
+						    	i++;
+						    }
+						}
+						geral(null, true, 101, "JS", [null, false, 101, "JS101"]);
+					</code></pre>
+				</section>
+				<section>
+					<h2>Função Construtora</h2>
+					<br>
+					<h3>Uma função construtora pode ser usada para criarmos um objeto.</h3>
+					<pre><code data-trim contenteditable>
+						function Aluno(nome, matricula, cpf){
+						    this.nome = nome;
+						    this.matricula = matricula;
+						    this.cpf = cpf;
+						}
+						var aluno1 = new Aluno("Aluno A", "14015016", "01020203044");
+						alert("Nome: "+aluno1.nome+" M: "+aluno1.matricula+" CPF: "+aluno1.cpf);
+					</code></pre>
+				</section>
+				<section>
+					<h1>Manipulando a DOM</h1>
+				</section>
+				<section>
+					<h2>Obtendo Elementos</h2>
+					<br>
+					<h3>Busca por ID</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna o elemento com o ID p1
+						var el = document.getElementById("p1");
+					</code></pre>
+					<h3>Busca pela Classe</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna um array de elementos com a classe pVermelho
+						var el = document.getElementsByClassName("pVermelho");
+					</code></pre>
+					<h3>Busca pela Tag</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna um array contendo os elementos P
+						var el = document.getElementsByTagName("p");
+					</code></pre>
+					<h3>Busca pelo Nome</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna um array contendo os elementos com nome paragrafo
+						var el = document.getElementsByName("paragrafo");
+					</code></pre>
+				</section>
+				<section>
+					<h2>Query Selector</h2>
+					<br>
+					<h3>Retorna o primeiro elemento encontrado baseando-se na expressão CSS passada.</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna o elemento com o ID p1
+						var el = document.querySelector("#p1");
+					</code></pre>
+					<br>
+					<h2>Query Selector All</h2>
+					<br>
+					<h3>Retorna um array com os elementos encontrados baseando-se na expressão CSS passada.</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna um array contendo os elementos P
+						var el = document.querySelectorAll("p");
+					</code></pre>
+				</section>
+				<section>
+					<h2>Manipulando Elementos</h2>
+					<br>
+					<h3>Obtendo/Alterando HTML interno</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna o elemento com o ID post1
+						var el = document.getElementById("post1");
+						el.innerHTML = "<p id='p1'>Paragrafo Novo</p>";
+					</code></pre>
+					<h3>Obtendo/Alterando texto interno</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna o elemento com o ID p1
+						var el = document.querySelector("#p1");
+						alert(el.innerText);
+						el.innerText = "<p id='p1'>Paragrafo Novo</p>";
+					</code></pre>
+					<h3>Obtendo/Alterando valor de um input</h3>
+					<pre><code data-trim contenteditable>
+						//Retorna o elemento com o ID in
+						var el = document.querySelector("#in");
+						alert(el.value);
+						el.value = "Valor Substituido";
+					</code></pre>
+				</section>
+				<section>
+					<h2>Eventos JS</h2>
+					<br>
+					<h3><b style="color: #4472C4">onClick</b> - Elemento foi Clicado</h3>
+					<h3><b style="color: #4472C4">onLoad</b> - Carregamento de um elemento foi concluído</h3>
+					<h3><b style="color: #4472C4">onChange</b> - Valor do elemento foi alterado</h3>
+					<h3><b style="color: #4472C4">onFocus</b> - Elemento tornou-se o foco da página</h3>
+					<h3><b style="color: #4472C4">onMouseOver</b> - Mouse está sobre o elemento</h3>
+					<h3><b style="color: #4472C4">onSubmit</b> - Formulário foi submetido, antes do envio</h3>
+				</section>
+				<section>
+					<h3>onFocus</h3>
+					<pre><code data-trim contenteditable>
+						var el = document.querySelector("#in");
+						el.onfocus = function(){
+						    el.value = "Nome: ";
+						}
+					</code></pre>
+					<h3>onSubmit</h3>
+					<pre><code data-trim contenteditable>
+						var el = document.querySelector("#submit");
+						el.onfocus = function(){
+						    alert("Obrigado por se inscrever!");
+						}
+					</code></pre>
+					<h3>onLoad</h3>
+					<pre><code data-trim contenteditable>
+						var el = document.getElementById("img1");
+						el.onload = function(){
+						    el.style.display = block;
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h2>Javascript + CSS</h2>
+					<br>
+					<h3>Trocando a cor</h3>
+					<pre><code data-trim contenteditable>
+						var el = document.getElementById("p1");
+						el.style.color = "red";
+					</code></pre>
+					<h3>Inserindo espaçamneto interno</h3>
+					<pre><code data-trim contenteditable>
+						var el = document.querySelector("#conteudo");
+						el.style.padding = "20px";
+					</code></pre>
+				</section>
+				<section>
+					<h2>Criando elementos dinamicamente</h2>
+					<br>
+					<h3>Sintaxe</h3>
+					<pre><code data-trim contenteditable>
+						var elemento =  document.createElement('elemento');
+						var destino = document.getElementById('id-do-elemento');
+						destino.appendChild(elemento);
+					</code></pre>
+				</section>
+				<section>
+					<h2>Exemplo</h2>
+					<br>
+					<h3>HTML Inicial</h3>
+					<pre><code data-trim contenteditable>
+						<div id="conteudo">
+						</div>
+					</code></pre>
+					<h3>Código JavaScript</h3>
+					<pre><code data-trim contenteditable>
+						var conteudo = document.getElementById('conteudo');
+
+						var span = document.createElement('span');
+						span.innerText = 'Novo elemento';
+
+						conteudo.appendChild(span);
+					</code></pre>
+					<h3>HTML Final</h3>
+					<pre><code data-trim contenteditable>
+						<div id="conteudo">
+						    <span>Novo Elemento</span>
+						</div>
+					</code></pre>
+				</section>
+				<section>
+					<img src="img/taf.jpg">
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme,
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
